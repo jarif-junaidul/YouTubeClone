@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo.png">
+    <title>YouTube</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            font-size: medium;     
+        }
+        .body{
+            height: 3000px;
+            padding-left: 95px;
+            padding-right: 25px;
+            background-color: #f8f8f8;         
+        }
+        .main-container-grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            column-gap: 10px;
+            row-gap: 30px;
+            margin-top: 80px;
+        }
+        @media (max-width: 600px){
+            .main-container-grid{
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 950px){
+            .main-container-grid{
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (min-width: 951px) and (max-width: 1350px){
+            .main-container-grid{
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        @media (min-width: 1351px) and (max-width: 1760px){
+            .main-container-grid{
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+        @media (min-width: 1761px) and (max-width: 2000px){
+            .main-container-grid{
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            }
+        }
+        .lower-grid{
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            margin-top: 8px;
+        }      
+        .thumbnail{
+            width: 100%;
+            border-radius: 15px;
+            max-width: 400px;
+            transition: 0.25s;
+            cursor: pointer;
+           
+
+        }
+        .thumbnail:hover{
+            border-radius: 2px;
+            
+        }
+        .icon{
+            border-radius: 50px;
+            width: 36px;
+            cursor: pointer;
+        }
+        .video-title{
+            font-size: 16px;         
+            margin-bottom: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #0f0f0f;
+        }
+        .auther-name{
+            font-size: 14px;
+            margin-bottom:4px;
+            cursor: pointer;
+            color: #606060;
+        }
+        .video-stats{
+            font-size: 14px;  
+            color: #606060;
+        }
+        .left{
+            display: flex;
+            flex-direction: row;
+            width: 180px;
+        }      
+        .middle{
+            margin-left: 70px;
+            margin-right: 35px;
+            flex: 1;
+            max-width: 700px;
+            display: flex;
+            flex-direction: row;
+        }
+        .search-bar{
+            border: solid;
+            border-width: 1px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            flex: 1;
+            border-right-width: 1px;
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+            border-color: rgb(204, 204, 204);
+            box-shadow: inset 1px 2px 3px rgb(0, 0, 0, 0.04);
+            
+        }
+        @media (min-width: 200px){
+            .search-bar{
+                width: 60px;
+            }
+        }
+        
+        .right{
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            align-items: center;
+            width: 200px;
+        }
+        .navigation{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 20px;
+            padding-right: 25px;
+            position: fixed; 
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            background-color: white;
+            box-shadow: 1px 1px 3px rgb(0, 0, 0, 0.04);
+            z-index: 1;
+        }
+        .hamburger-menu{
+            width: 24px;
+            height: 24px;
+            cursor: pointer;  
+        }
+        .hamburger-menu-hover{
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            border-radius: 50px;
+            margin-right: 20px;
+            transition: .25s;
+        }
+        .hamburger-menu-hover:hover{
+            background-color: lightgray;
+        }
+        .youtube-logo{
+            width: 90px;
+            cursor: pointer;
+        }
+        .voice-search-icon{
+            width: 24px;
+            background-color: #f8f8f8;
+            cursor: pointer;
+        }
+        .upload{
+            width: 24px;
+            height: 24px;
+            
+            
+            cursor: pointer;
+        }
+        .notifications{
+            width: 24px;
+            height: 24px;
+            
+            cursor: pointer;
+        }
+        
+        .my-channel{
+            width: 32px;
+            margin-left: 28px;
+            cursor: pointer;
+        }
+        .voice-search-icon-button{
+            border-radius: 50px;
+            border: none;
+            width: 40px;
+            margin-left: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
+        }
+        .search{
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+        .search-button{
+            width: 65px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: solid;
+            border-width: 1px;
+            border-left-width: 0;
+            border-color: rgb(204, 204, 204);
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            margin-right: 10px;
+            transition: .25s;     
+        }
+        .search-button:hover{
+            background-color: lightgray;          
+        }
+        .sidebar{
+            position: fixed;
+            background-color: white;
+            box-shadow: 1px 4px 3px rgb(0, 0, 0, 0.1);
+            bottom: 0;
+            left: 0;
+            top: 56px;
+            width: 72px;
+            z-index: 1;          
+        }
+        .home{
+            width: 24px;
+        }
+              
+        .explore{
+            width: 24px;
+        }
+        .subscriptions{
+            width: 24px;
+        }
+        .ssfont{
+            font-size: 10px;
+        }
+        .ssdiv{
+            width: 72px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            transition: .25s;
+        }
+        .ssdiv:hover{
+            background-color: lightgray;
+        } 
+        .thumbnail-time-div{
+            position: relative;
+            max-width: 400px;
+        }
+        .time{
+            position: absolute;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            right: 6px;
+            bottom: 10px;
+            font-size: 14px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+        .notifications-div{
+            position: relative;
+            margin-left: 20px;
+        }
+        .notifications-remains-div{
+            position: absolute;
+            font-size: 80%;
+            right: 0px;
+            top: 0px;
+            background-color: #cc0000;
+            color: white;
+            width: 50%;
+            height: 50%;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .upload-div{
+            
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            
+        }
+        .upload-div:hover{
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="navigation">
+        <div class="left">
+            <div class="hamburger-menu-hover">
+                <img class="hamburger-menu" src="hamburger-menu.svg" alt="">
+            </div>
+            
+            <img class="youtube-logo" src="youtube-logo.svg" title="YouTube Home">
+        </div>
+        <div class="middle">
+            <input class="search-bar" type="text" placeholder="Search">
+            <div class="search-button-div">
+                <button class="search-button" title="Search">
+                    <img class="search" src="search.svg" alt="">
+                </button>
+            </div>
+            
+            <button class="voice-search-icon-button" title="Search with your voice">
+                <img class="voice-search-icon" src="voice-search-icon.svg" alt="">
+            </button>     
+        </div>
+        <div class="right">
+            <div class="upload-div">
+                <img class="upload" src="upload.svg" title="Create">
+            </div>
+            
+            <div class="notifications-div">
+                <div class="upload-div">
+                    <img class="notifications" src="notifications.svg" title="Notifications">
+                </div>
+                <div class="notifications-remains-div">
+                    9+
+                </div>
+            </div>
+            
+            <img class="my-channel" src="channels4_profile.jpg">
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="ssdiv">
+            <img class="home" src="home.svg" alt="">
+            <p class="ssfont">Home</p>
+        </div>
+        <div class="ssdiv">
+            <img class="explore" src="explore.svg" alt="">
+            <p class="ssfont">Explore</p>
+        </div>
+        <div class="ssdiv">
+            <img class="subscriptions" src="subscriptions.svg" alt="">
+            <p class="ssfont">Subscriptions</p>
+        </div>   
+    </div>
+    <div class="main-container-grid">
+        <div class="video-previews">
+            
+            <div class="thumbnail-time-div">
+                <img class="thumbnail" src="xTh1.png" alt="">
+                <div class="time">5:00</div>
+            </div>
+            <div class="lower-grid">
+                <div>
+                    <img class="icon" src="xIcon.png" alt="">
+                </div>
+                <div>
+                    <p class="video-title">Mei Mei - Rack Love [Edit/AMV]!</p>
+                    <p class="auther-name">XENOZ &#10004;</p>
+                    <p class="video-stats">54k viwes &#x2022; 2 days ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-previews">
+            <div class="thumbnail-time-div">
+                <img class="thumbnail" src="fk.png" alt="">
+                <div class="time">5:00</div>
+            </div>
+            
+            <div class="lower-grid">
+                <div>
+                    <img class="icon" src="fkIcon.png" alt="">
+                </div>
+                <div>
+                    <p class="video-title">Fujii Kaze - Hana (Official Video)</p>
+                    <p class="auther-name">Fujii Kaze &#119137;</p>
+                    <p class="video-stats">14M viwes &#x2022; 1 month ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-previews">
+            <div class="thumbnail-time-div">
+                <img class="thumbnail" src="xTh2.png" alt="">
+                <div class="time">5:00</div>
+            </div>
+            
+            <div class="lower-grid">
+                <div>
+                    <img class="icon" src="xIcon.png" alt="">
+                </div>
+                <div>
+                    <p class="video-title">Toji - Warning XANAKIN! [Edit/AMV]!</p>
+                    <p class="auther-name">XENOZ &#10004;</p>
+                    <p class="video-stats">78k viwes &#x2022; 11 days ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-previews">
+            <div class="thumbnail-time-div">
+                <img class="thumbnail" src="fk2.png" alt="">
+                <div class="time">5:00</div>
+            </div>
+            <div class="lower-grid">
+                <div>
+                    <img class="icon" src="fkIcon.png" alt="">
+                </div>
+                <div>
+                    <p class="video-title">Fujii Kaze - "Shinunoga E-Wa" Live at Nippon Budokan (2020)</p>
+                    <p class="auther-name">Fujii Kaze &#119137;</p>
+                    <p class="video-stats">68M viwes &#x2022; 1 year ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-previews">
+            <div class="thumbnail-time-div">
+                <img class="thumbnail" src="ssd.png" alt="">
+                <div class="time">5:00</div>
+            </div>
+            <div class="lower-grid">
+                <div>
+                    <img class="icon" src="ssdIcon.png" alt="">
+                </div>
+                <div>
+                    <p class="video-title">HTML & CSS Full Course - Beginner to Pro</p>
+                    <p class="auther-name">SuperSimpleDev &#10004;</p>
+                    <p class="video-stats">8.2M viwes &#x2022; 1 year ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-previews">
+            <div class="thumbnail-time-div">
+                <img class="thumbnail" src="th.png" alt="">
+                <div class="time">5:00</div>
+            </div>
+            <div class="lower-grid">
+                <div>
+                    <img class="icon" src="icon.png" alt="">
+                </div>
+                <div>
+                    <p class="video-title">Feeling Too Lazy To Code?</p>
+                    <p class="auther-name">bigboxSWE &#10004;</p>
+                    <p class="video-stats">45k viwes &#x2022; 2 weeks ago</p>
+                </div>
+            </div>
+        </div> 
+        <div class="video-previews">
+            <div class="thumbnail-time-div">
+                <img class="thumbnail" src="xTh4.png" alt="">
+                <div class="time">5:00</div>
+            </div>
+            <div class="lower-grid">
+                <div>
+                    <img class="icon" src="xIcon.png" alt="">
+                </div>
+                <div>
+                    <p class="video-title">Madara ''Badass Edit'' - VVV [AMV/EDIT]!</p>
+                    <p class="auther-name">XENOZ &#10004;</p>
+                    <p class="video-stats">37k viwes &#x2022; 22 hours ago</p>
+                </div>
+            </div>
+        </div>      
+    </div>
+    <script>
+
+    </script>   
+</body>
+</html>
